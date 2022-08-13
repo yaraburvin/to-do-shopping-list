@@ -1,0 +1,54 @@
+* {
+    font-size: large;
+}
+table {
+    width: 100%;
+    text-align: center;
+}
+
+th {
+    border-bottom: 2px solid black;
+}
+
+table .btn {
+    width: 20px;
+    height: 20px;
+    color: white;
+    background-color: black;
+}
+
+.popupWindow {
+    border: 2px solid gray;
+    position:fixed;
+    width: 400px;
+    height:300px;
+    left: calc((100% - 400px )/2);
+    top: calc((100% - 200px)/2);
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+form {
+    padding: 20px
+}
+
+button[type=submit] {
+    margin-top: 20px;
+    height: 40px;
+    width: 70px;
+    color: white;
+    background-color: black;
+    position: relative;
+}
