@@ -40,7 +40,7 @@ input {
     box-sizing: border-box;
   }
 
-form {
+.form {
     padding: 20px
 }
 

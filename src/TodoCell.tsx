@@ -1,17 +1,23 @@
 
+import axios from "axios"
 import {ITodo} from "./utils/types"
 
+interface IToDO {
+  todo : ITodo,
+  function: (x: number) => void
+}
 
 
-export function ToDoCell(todo : ITodo) : JSX.Element {
-
+export function ToDoCell(props : IToDO) : JSX.Element {
+    
+           
     return (  
-        <tr key={todo.id}>
+        <tr key={props.todo.id}>
             <td><input type="checkbox" /></td>
-            <td>{todo.task}</td>
-            <td>{todo.dueDate}</td>
-            <td>{todo.creationDate}</td>
-            <td><button className="btn">x</button></td>
+            <td>{props.todo.task}</td>
+            <td>{props.todo.duedate}</td>
+            <td>{props.todo.creationdate}</td>
+            <td><button className="btn"  onClick={() => props.function(props.todo.id)}>x</button></td>
         </tr>
     )
 }

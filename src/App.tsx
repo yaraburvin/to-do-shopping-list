@@ -9,25 +9,29 @@ import { useEffect } from "react";
 
 
 
-  
 
 function App(): JSX.Element {
-  const [buttonPopup, setButtonPopup] = useState<boolean>(false)
   const [tasks, setTasks] = useState<ITodo[]>([])
   useEffect(() => {
     getData()
   },[tasks])
   const getData = () => {
-    axios.get<ITodo[]>("http://localhost:4000/getData")
+    axios.get<ITodo[]>("http://localhost:4000/tasks")
     .then((res) =>  setTasks(res.data))
     .catch(() => 
       console.log("Oh nooo!!!")
     )
-    
   }
+ 
+function removeTask (TaskId: number) {
+  axios.delete(`http://localhost:4000/tasks/${TaskId}`)
+  .then(() => console.log("Yay"))
+  .catch(() => 
+  console.log("Oh nooo!!!")
+)}
   return (
     <>
-      {Header(setButtonPopup)}
+      {Header()}
       <table>
         <tbody>
           <tr>
@@ -37,15 +41,14 @@ function App(): JSX.Element {
             <th>Creation date</th>
             <th></th>
           </tr>
-          { !(tasks===[]) && tasks.map(ToDoCell)}
-          {tasks === [] && <tr><td className="no-data" colSpan={5}>No Tasks added yet</td></tr>}
+          {tasks.map((e) => <ToDoCell todo={e} function={removeTask} key={e.id}/>)}
+          
       </tbody>
       </table>
-      {buttonPopup === true &&
         <div className="popupWindow">
-          {Form(setButtonPopup)}
+          {Form()}
         </div>
-      }
+      
     </>
   )
 }
